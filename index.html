@@ -1,64 +1,412 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First Free Website</title>
+    <title>Nigamanandha Sarma S | Professional Portfolio Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slateBg: '#090d16',
+                        slateCard: '#111827',
+                        accentBlue: '#38bdf8',
+                        accentTeal: '#2dd4bf',
+                        brightText: '#f3f4f6'
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(15px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #090d16; 
         }
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 400px;
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #090d16; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #111827; border-radius: 3px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
+        
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Premium Section Hover Effects */
+        .hover-section {
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease, border-color 0.4s ease;
         }
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #7f8c8d;
-            line-height: 1.6;
-        }
-        button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s;
-        }
-        button:hover {
-            background-color: #2980b9;
+        .hover-section:hover {
+            transform: translateY(-4px) scale(1.005);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+            border-color: #38bdf8;
         }
     </style>
 </head>
-<body>
+<body class="text-brightText antialiased custom-scrollbar selection:bg-accentBlue selection:text-slateBg overflow-x-hidden">
 
-    <div class="card">
-        <h1>Hello, World!</h1>
-        <p>This is a simple, clean HTML file ready to be hosted online for free.</p>
-        <button onclick="celebrate()">Click Me</button>
-    </div>
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-slateBg/90 backdrop-blur-md border-b border-gray-800/60 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <button onclick="navigateTo('home')" class="text-xl font-bold tracking-tight text-white flex items-center gap-2 group text-left">
+                <span class="text-brightText transition-all duration-300 group-hover:text-accentBlue">NIGAMANANDHA SARMA S</span>
+                <span class="text-[10px] bg-gray-800 text-gray-400 px-2 py-0.5 rounded border border-gray-700 hidden sm:inline-block">MBA & Tech Lead</span>
+            </button>
+            
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-400">
+                <button onclick="navigateTo('home')" id="nav-home" class="nav-link text-white font-semibold transition-colors py-1 border-b-2 border-accentBlue">Executive Overview</button>
+                <button onclick="navigateTo('experience-page')" id="nav-experience-page" class="nav-link hover:text-white transition-colors py-1 border-b-2 border-transparent">Corporate Experience</button>
+                <button onclick="navigateTo('projects-page')" id="nav-projects-page" class="nav-link hover:text-white transition-colors py-1 border-b-2 border-transparent">Innovation & Strategy</button>
+                <button onclick="navigateTo('education-page')" id="nav-education-page" class="nav-link hover:text-white transition-colors py-1 border-b-2 border-transparent">Academics & Accolades</button>
+                <a href="mailto:snigamanandhasarma@gmail.com" class="ml-2 px-4 py-2 bg-accentBlue text-slateBg rounded-md font-bold shadow-md hover:bg-opacity-90 transform hover:-translate-y-0.5 transition-all text-xs">Hire Candidate</a>
+            </div>
+
+            <button id="menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none transition-transform active:scale-95">
+                <i class="fa-solid fa-bars-staggered text-xl"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden absolute w-full left-0 bg-slateBg/95 backdrop-blur-lg border-b border-gray-800 px-6 py-4 flex flex-col gap-3 text-gray-300 text-sm shadow-xl animate-fade-in-up">
+            <button onclick="navigateTo('home')" class="text-left py-2 border-b border-gray-800/50 hover:text-accentBlue">Executive Overview</button>
+            <button onclick="navigateTo('experience-page')" class="text-left py-2 border-b border-gray-800/50 hover:text-accentBlue">Corporate Experience</button>
+            <button onclick="navigateTo('projects-page')" class="text-left py-2 border-b border-gray-800/50 hover:text-accentBlue">Innovation & Strategy</button>
+            <button onclick="navigateTo('education-page')" class="text-left py-2 border-b border-gray-800/50 hover:text-accentBlue">Academics & Accolades</button>
+            <a href="mailto:snigamanandhasarma@gmail.com" class="w-full text-center mt-2 px-4 py-2 bg-accentBlue text-slateBg rounded-md font-bold block">Email Me</a>
+        </div>
+    </nav>
+
+    <main class="mt-20 min-h-[calc(100vh-80px)]">
+
+        <div id="section-home" class="page-section block">
+            <section class="pt-16 pb-20 max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center unique-hover-zone">
+                <div class="lg:col-span-7 space-y-6 animate-fade-in-up">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-xs text-accentBlue font-medium tracking-wide">
+                        <span class="w-2 h-2 rounded-full bg-accentTeal animate-pulse"></span> Great Lakes MBA Candidate (2026)
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+                        Engineered for Scale.<br><span class="text-accentBlue">Optimized for Strategy.</span>
+                    </h1>
+                    <p class="text-gray-400 text-base sm:text-lg leading-relaxed max-w-2xl">
+                        Results-driven professional with over 4 years of experience driving operational excellence for global brands. Leveraging a strong foundation in automation and problem management to transition into strategic leadership, organizational efficiency, and large-scale business transformation.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <button onclick="navigateTo('experience-page')" class="px-6 py-3 bg-accentBlue text-slateBg font-bold rounded-lg shadow-lg hover:bg-opacity-95 transform hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 group">
+                            Explore Corporate History <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+                        </button>
+                        <a href="tel:9597009179" class="px-6 py-3 bg-slateCard hover:bg-gray-800 border border-gray-800 text-brightText font-semibold rounded-lg transform hover:-translate-y-1 transition-all duration-300 flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-accentBlue"></i> 9597009179
+                        </a>
+                    </div>
+
+                    <div class="flex items-center gap-6 pt-6 border-t border-gray-800 max-w-xl">
+                        <span class="text-xs font-semibold text-gray-500 uppercase tracking-widest">Media Channels:</span>
+                        <a href="#" class="text-gray-400 hover:text-accentBlue transition-colors flex items-center gap-1.5 text-sm font-medium group">
+                            <i class="fa-brands fa-youtube text-red-500 group-hover:scale-110 transition-transform"></i> Ojas Originals
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-accentBlue transition-colors flex items-center gap-1.5 text-sm font-medium group">
+                            <i class="fa-brands fa-instagram text-pink-500 group-hover:scale-110 transition-transform"></i> @ojasoriginals
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 hover-section p-4 bg-slateCard border border-gray-800 rounded-2xl shadow-2xl overflow-hidden animate-fade-in-up" style="animation-delay: 0.1s;">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" alt="Advanced Data Network Infrastructure" class="w-full h-64 object-cover rounded-xl grayscale opacity-60 transition-all duration-500 hover:grayscale-0 hover:opacity-90">
+                    <div class="p-5 mt-4 bg-slateBg/90 rounded-xl border border-gray-800">
+                        <h3 class="text-white font-bold text-lg flex items-center gap-2">
+                            <i class="fa-solid fa-square-poll-vertical text-accentBlue"></i> Metrics That Define Impact
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4 mt-4">
+                            <div class="p-3 bg-slateCard rounded-lg border border-gray-800">
+                                <div class="text-2xl font-extrabold text-accentBlue">44%</div>
+                                <div class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold mt-0.5">CSM Metric Drop</div>
+                            </div>
+                            <div class="p-3 bg-slateCard rounded-lg border border-gray-800">
+                                <div class="text-2xl font-extrabold text-accentTeal">77%</div>
+                                <div class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold mt-0.5">Device Issue Drop</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-16 bg-slateCard/20 border-y border-gray-800/60 reveal">
+                <div class="max-w-7xl mx-auto px-6">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-gray-500 text-center mb-10">Cross-Functional Skill Matrix</h2>
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-slateCard border border-gray-800 p-6 rounded-xl hover-section">
+                            <div class="w-10 h-10 bg-accentBlue/10 rounded-lg flex items-center justify-center text-accentBlue mb-4"><i class="fa-solid fa-chart-pie"></i></div>
+                            <h3 class="text-white font-bold mb-2">Strategy & Execution</h3>
+                            <p class="text-gray-400 text-xs leading-relaxed">Strategy Formulation, GTM Roadmaps, Macroeconomic Diagnostics, Agile Software Development methodologies.</p>
+                        </div>
+                        <div class="bg-slateCard border border-gray-800 p-6 rounded-xl hover-section">
+                            <div class="w-10 h-10 bg-accentTeal/10 rounded-lg flex items-center justify-center text-accentTeal mb-4"><i class="fa-solid fa-terminal"></i></div>
+                            <h3 class="text-white font-bold mb-2">Automation Engineering</h3>
+                            <p class="text-gray-400 text-xs leading-relaxed">ServiceNow, Advanced Outlook & Excel Macros, PowerShell Scripting Core, FlaUI, Selenium Frameworks.</p>
+                        </div>
+                        <div class="bg-slateCard border border-gray-800 p-6 rounded-xl hover-section">
+                            <div class="w-10 h-10 bg-accentBlue/10 rounded-lg flex items-center justify-center text-accentBlue mb-4"><i class="fa-solid fa-network-wired"></i></div>
+                            <h3 class="text-white font-bold mb-2">Enterprise Ecosystems</h3>
+                            <p class="text-gray-400 text-xs leading-relaxed">Deep domain expertise in global distributed restaurant technology stacks and high-volume P1 SLA compliance.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="section-experience-page" class="page-section hidden">
+            <section class="py-12 max-w-5xl mx-auto px-6">
+                <div class="text-center space-y-2 mb-12">
+                    <span class="text-xs font-bold text-accentBlue uppercase tracking-widest">Enterprise Architecture Track Record</span>
+                    <h2 class="text-3xl font-bold text-white">Capgemini Operational Career</h2>
+                    <p class="text-gray-400 text-sm max-w-xl mx-auto">Providing tier-3 technical diagnostics, engineering high-level automation matrices, and controlling downtime across global corporate portfolios.</p>
+                </div>
+
+                <div class="space-y-8 relative before:absolute before:inset-0 before:left-4 sm:before:left-1/2 before:w-0.5 before:bg-gray-800">
+                    <div class="relative flex flex-col sm:flex-row items-start justify-between group reveal">
+                        <div class="absolute left-4 sm:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-slateBg border-4 border-accentBlue z-10"></div>
+                        <div class="w-full sm:w-[46%] pl-10 sm:pl-0 sm:text-right order-2 sm:order-1">
+                            <span class="text-xs font-bold text-accentBlue">Dec 2024 - Present</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Associate Consultant</h3>
+                            <p class="text-xs text-gray-400 font-medium">Problem Management Module Lead</p>
+                        </div>
+                        <div class="w-full sm:w-[46%] bg-slateCard border border-gray-800 p-5 rounded-xl ml-10 sm:ml-0 order-3 sm:order-2 shadow-xl hover-section">
+                            <ul class="text-xs text-gray-300 space-y-2.5 list-disc list-inside marker:text-accentBlue">
+                                <li>Analysed complex global metrics trends, leading to a <strong>44% reduction in Critical Service Management (CSM) metrics</strong> via systemic root-cause tracking.</li>
+                                <li>Engineered an automated PowerShell enterprise framework, securing a <strong>77% systemic reduction in active device anomalies</strong>.</li>
+                                <li>Programmed Outlook/Excel aggregation macros, reclaiming <strong>15+ daily operational analysis hours</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="relative flex flex-col sm:flex-row items-start justify-between group reveal">
+                        <div class="absolute left-4 sm:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-slateBg border-4 border-accentTeal z-10"></div>
+                        <div class="w-full sm:w-[46%] bg-slateCard border border-gray-800 p-5 rounded-xl ml-10 sm:ml-0 order-3 sm:order-2 shadow-xl hover-section">
+                            <ul class="text-xs text-gray-300 space-y-2.5 list-disc list-inside marker:text-accentTeal">
+                                <li>Orchestrated tier-3 deep-dive investigations for business critical restaurant escalations and drove Major Incident Management (MIM) communication architecture.</li>
+                                <li>Managed high-severity critical P1 technology incidents with <strong>100% compliant SLA metrics execution</strong>.</li>
+                                <li>Programmed real-time automated SLA performance intelligence dashboards using Selenium, FlaUI automation, and .Net C#.</li>
+                            </ul>
+                        </div>
+                        <div class="w-full sm:w-[46%] pl-10 sm:pl-0 order-2 sm:order-3">
+                            <span class="text-xs font-bold text-accentTeal">Feb 2022 - Dec 2024</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Senior Analyst & Analyst</h3>
+                            <p class="text-xs text-gray-400 font-medium">L3 Technical Support Lead</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="section-projects-page" class="page-section hidden">
+            <section class="py-12 max-w-7xl mx-auto px-6">
+                <div class="text-center space-y-2 mb-12">
+                    <span class="text-xs font-bold text-accentTeal uppercase tracking-widest">Strategic Portfolio Architecture</span>
+                    <h2 class="text-3xl font-bold text-white">Business Consulting & Industrial Systems</h2>
+                    <p class="text-gray-400 text-sm max-w-xl mx-auto">Blending advanced academic MBA strategy with proven functional engineering and automated hardware deployments.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-slateCard border border-gray-800 rounded-xl overflow-hidden hover-section flex flex-col justify-between reveal">
+                        <div class="relative overflow-hidden h-48 bg-slateBg">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Corporate Strategy Dashboard" class="w-full h-full object-cover opacity-20 grayscale">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slateCard to-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-gray-800 text-accentBlue text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded border border-gray-700 backdrop-blur-sm">MBA Strategy</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold text-white">FMCG Go-To-Market (GTM) Engine</h3>
+                            <p class="text-xs text-gray-400 leading-relaxed">Formulated the launch roadmap and operational commercial blueprint for an early-stage startup consumer venture. Established positioning guidelines and channel deployment paths to eliminate early traction barriers.</p>
+                        </div>
+                        <div class="p-6 pt-0 border-t border-gray-800/60 mt-4 flex items-center justify-between text-xs text-gray-500">
+                            <span>Framework: Positioning & Segment Mapping</span>
+                            <i class="fa-solid fa-chess-knight text-accentBlue"></i>
+                        </div>
+                    </div>
+
+                    <div class="bg-slateCard border border-gray-800 rounded-xl overflow-hidden hover-section flex flex-col justify-between reveal">
+                        <div class="relative overflow-hidden h-48 bg-slateBg">
+                            <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=600&q=80" alt="Macroeconomics" class="w-full h-full object-cover opacity-20 grayscale">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slateCard to-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-gray-800 text-accentTeal text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded border border-gray-700 backdrop-blur-sm">Macro Analytics</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold text-white">Macroeconomic Diagnostic Portfolio</h3>
+                            <p class="text-xs text-gray-400 leading-relaxed">Evaluated the sovereign macroeconomic frameworks of Nigeria, mapping historical performance, identifying three high-impact institutional bottlenecks, and tailoring structural growth recommendations.</p>
+                        </div>
+                        <div class="p-6 pt-0 border-t border-gray-800/60 mt-4 flex items-center justify-between text-xs text-gray-500">
+                            <span>Target: Regional Market Expansion Analysis</span>
+                            <i class="fa-solid fa-globe text-accentTeal"></i>
+                        </div>
+                    </div>
+
+                    <div class="bg-slateCard border border-gray-800 p-6 rounded-xl hover-section flex flex-col justify-between reveal">
+                        <div class="space-y-3">
+                            <span class="text-[10px] font-bold text-accentBlue uppercase tracking-widest">Industrial Automation</span>
+                            <h3 class="text-lg font-bold text-white">Real-Time Core Diameter Indicator Tool</h3>
+                            <p class="text-xs text-gray-400 leading-relaxed">Engineered a dedicated hardware-integrated electronic tool driven by an Arduino micro-controller framework to calculate live lathe processing dimensions and route metrics directly to an external crystal LCD display array.</p>
+                        </div>
+                        <div class="pt-4 border-t border-gray-800/60 text-xs text-slate-500 flex justify-between items-center mt-4">
+                            <span>Core Tech: Arduino C, Micro-Architectures</span>
+                            <span class="px-2 py-0.5 bg-slateBg rounded text-[10px] text-gray-400 border border-gray-800">Hardware Prototype</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-slateCard border border-gray-800 p-6 rounded-xl hover-section flex flex-col justify-between reveal">
+                        <div class="space-y-3">
+                            <span class="text-[10px] font-bold text-accentTeal uppercase tracking-widest">Heavy Mechanical Engineering</span>
+                            <h3 class="text-lg font-bold text-white">Pneumatic Handling Systems Optimization</h3>
+                            <p class="text-xs text-gray-400 leading-relaxed">Designed an enterprise-level structural shoot system architecture at Kamachi Industries Pvt. Ltd. targeting high-moisture fuel blockages by configuring rapid air blast solutions via Rotary Shoot Blower mechanics.</p>
+                        </div>
+                        <div class="pt-4 border-t border-gray-800/60 text-xs text-slate-500 flex justify-between items-center mt-4">
+                            <span>Industrial Scope: Kamachi Industries</span>
+                            <span class="px-2 py-0.5 bg-slateBg rounded text-[10px] text-gray-400 border border-gray-800">Operational Study</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="section-education-page" class="page-section hidden">
+            <section class="py-12 max-w-6xl mx-auto px-6 space-y-12">
+                <div class="text-center space-y-2">
+                    <span class="text-xs font-bold text-accentBlue uppercase tracking-widest">Scholastic Records & Technical Merits</span>
+                    <h2 class="text-3xl font-bold text-white">Education & Strategic Milestones</h2>
+                </div>
+
+                <div class="grid sm:grid-cols-3 gap-6 text-center reveal">
+                    <div class="bg-slateCard border border-gray-800 p-6 rounded-xl hover-section relative overflow-hidden">
+                        <div class="text-3xl font-extrabold text-white">8.98 CGPA</div>
+                        <div class="text-xs font-bold text-accentBlue uppercase tracking-wider mt-1">B.E. Mechanical Eng.</div>
+                        <div class="text-[11px] text-gray-400 mt-2">TJS Engineering College (Anna University) | Graduated 2021</div>
+                    </div>
+                    <div class="bg-slateCard border border-gray-800 p-6 rounded-xl hover-section relative overflow-hidden">
+                        <div class="text-3xl font-extrabold text-white">100% Score</div>
+                        <div class="text-xs font-bold text-accentTeal uppercase tracking-wider mt-1">Diploma Mechanical Rank</div>
+                        <div class="text-[11px] text-gray-400 mt-2">State Second Rank Overall | Honoured by Baktavatsalam Polytechnic</div>
+                    </div>
+                    <div class="bg-slateCard border border-gray-800 p-6 rounded-xl hover-section relative overflow-hidden">
+                        <div class="text-3xl font-extrabold text-white">98.2% Score</div>
+                        <div class="text-xs font-bold text-gray-300 uppercase tracking-wider mt-1">SSLC Matriculation</div>
+                        <div class="text-[11px] text-gray-400 mt-2">Maharaja Agrasen Matric. Vidyalaya | 2015 Class File</div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 items-start pt-6">
+                    <div class="bg-slateCard border border-gray-800 p-6 rounded-xl space-y-4 hover-section reveal">
+                        <h3 class="text-white font-bold text-base border-b border-gray-800 pb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-trophy text-amber-500"></i> Corporate & Academic Highlights (2026)
+                        </h3>
+                        <div class="space-y-3 text-xs text-gray-300">
+                            <p class="flex items-start gap-2"><i class="fa-solid fa-award text-accentBlue mt-0.5"></i> <span><strong>Ideathon Case Winner:</strong> Ranked First across the Great Lakes 2026 Strategy Competition.</span></p>
+                            <p class="flex items-start gap-2"><i class="fa-solid fa-award text-accentBlue mt-0.5"></i> <span><strong>International Relations Debate:</strong> Secured 1st Position honors inside Great Lakes Academic Field.</span></p>
+                            <p class="flex items-start gap-2"><i class="fa-solid fa-award text-accentBlue mt-0.5"></i> <span><strong>Capgemini iEVOLVE Award:</strong> Awarded consecutive excellence certificates in both 2023 and 2024.</span></p>
+                            <p class="flex items-start gap-2"><i class="fa-solid fa-award text-accentBlue mt-0.5"></i> <span><strong>Executive Presentation Wins:</strong> Honoured by regional Minister Mr. K. Pandiarajan (Sathyabama) and Thiruvallur District Collector Mrs. Sundaravalli.</span></p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slateCard border border-gray-800 p-6 rounded-xl space-y-4 hover-section reveal">
+                        <h3 class="text-white font-bold text-base border-b border-gray-800 pb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-bookmark text-accentTeal"></i> Creative Outlets & Certifications
+                        </h3>
+                        <div class="space-y-3 text-xs text-gray-300">
+                            <p><strong>Published Fiction Author:</strong> Creator of <em>"Pune Portal"</em>, a character-driven corporate fiction tracking IT professional journeys.</p>
+                            <p><strong>Technical Paper Exhibition Wins:</strong> 1st Prize across Bhakthavatsalam & Rajagopal polytechnics; 3rd Prize inside MIT AUTOMEET conference tracks.</p>
+                            <p><strong>Advanced System Training:</strong> Attended certified technical workshops in Android App Dev (IIT Madras), Ethical Hacking (Anna University), and Robotics (Ramakrishna Mission).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <footer class="bg-slateBg border-t border-gray-800 mt-16 pt-12 pb-10 text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="space-y-1 text-center sm:text-left">
+                <p class="text-gray-300 font-semibold">Nigamanandha Sarma S</p>
+                <p>Strategic Leadership & Engineering Optimization Portfolio Hub &copy; 2026</p>
+            </div>
+            <div class="flex gap-4">
+                <a href="mailto:snigamanandhasarma@gmail.com" class="hover:text-accentBlue transition-colors flex items-center gap-1"><i class="fa-solid fa-envelope"></i> Email</a>
+                <a href="tel:9597009179" class="hover:text-accentTeal transition-colors flex items-center gap-1"><i class="fa-solid fa-phone"></i> Call</a>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        function celebrate() {
-            alert("🎉 Awesome! Your code is working perfectly.");
-        }
-    </script>
+        function navigateTo(sectionId) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.add('hidden');
+                section.classList.remove('block');
+            });
 
+            const activeTarget = document.getElementById(`section-${sectionId}`);
+            if (activeTarget) {
+                activeTarget.classList.remove('hidden');
+                activeTarget.classList.add('block');
+            }
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('text-white', 'font-semibold', 'border-accentBlue');
+                link.classList.add('text-gray-400', 'border-transparent');
+            });
+
+            const currentActiveLink = document.getElementById(`nav-${sectionId}`);
+            if (currentActiveLink) {
+                currentActiveLink.classList.remove('text-gray-400', 'border-transparent');
+                currentActiveLink.classList.add('text-white', 'font-semibold', 'border-accentBlue');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('mobile-menu').classList.add('hidden');
+            handleScrollReveal();
+        }
+
+        document.getElementById('menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 30) {
+                navbar.classList.add('py-2.5', 'bg-slateBg/95', 'shadow-xl');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2.5', 'bg-slateBg/95', 'shadow-xl');
+            }
+            handleScrollReveal();
+        });
+
+        function handleScrollReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            handleScrollReveal();
+        });
+    </script>
 </body>
 </html>
