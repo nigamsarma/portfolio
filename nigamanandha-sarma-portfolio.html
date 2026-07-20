@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nigamanandha Sarma — Product, Strategy &amp; Impact</title>
+<meta name="description" content="Nigamanandha Sarma — PGPM candidate at Great Lakes Institute of Management, building products and driving business impact through strategy, data and disciplined execution.">
+<meta name="keywords" content="Nigamanandha Sarma, Product Management, Product Strategy, Consulting, Great Lakes Institute of Management, Capgemini">
+<meta property="og:title" content="Nigamanandha Sarma — Product, Strategy & Impact">
+<meta property="og:description" content="Building products, solving problems and creating business impact through strategy, innovation and data-driven decision making.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#050505">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --black:#050505;
+  --panel:#0b0c0f;
+  --panel-2:#101216;
+  --white:#f5f5f7;
+  --gray:#8a8d93;
+  --gray-dim:#5a5d63;
+  --blue-1:#3b82f6;
+  --blue-2:#60a5fa;
+  --blue-3:#93c5fd;
+  --line: rgba(255,255,255,0.08);
+  --glass: rgba(255,255,255,0.045);
+  --glass-strong: rgba(255,255,255,0.08);
+  --radius: 20px;
+  --ease: cubic-bezier(.16,.84,.44,1);
+  --ease-soft: cubic-bezier(.22,.61,.36,1);
+  --font-display:'Manrope', sans-serif;
+  --font-body:'Inter', sans-serif;
+  --font-mono:'IBM Plex Mono', monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:var(--font-body);
+  overflow-x:hidden;
+  cursor:none;
+  -webkit-font-smoothing:antialiased;
+}
+@media (max-width: 860px){ body{cursor:auto;} }
+::selection{ background:var(--blue-1); color:#fff; }
+
+/* ============ SCROLLBAR ============ */
+::-webkit-scrollbar{width:8px;}
+::-webkit-scrollbar-track{background:var(--black);}
+::-webkit-scrollbar-thumb{background:#232428; border-radius:10px;}
+
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+}
+
+/* ============ CURSOR ============ */
+.cursor-dot, .cursor-ring{
+  position:fixed; top:0; left:0; pointer-events:none; z-index:9999;
+  border-radius:50%; transform:translate(-50%,-50%);
+  will-change:transform;
+}
+.cursor-dot{ width:6px; height:6px; background:#fff; }
+.cursor-ring{ width:34px; height:34px; border:1px solid rgba(255,255,255,0.35); transition:width .25s var(--ease-soft), height .25s var(--ease-soft), border-color .25s; }
+.cursor-ring.big{ width:64px; height:64px; border-color:var(--blue-2); background:rgba(96,165,250,0.08); }
+@media (max-width: 860px){ .cursor-dot,.cursor-ring{display:none;} }
+
+.glow{
+  position:fixed; top:0; left:0; width:520px; height:520px; pointer-events:none; z-index:1;
+  background:radial-gradient(circle, rgba(59,130,246,0.10), rgba(59,130,246,0) 70%);
+  transform:translate(-50%,-50%); will-change:transform;
+}
+
+/* ============ SCROLL PROGRESS ============ */
+.progress-bar{
+  position:fixed; top:0; left:0; height:2px; width:0%;
+  background:linear-gradient(90deg, var(--blue-1), var(--blue-3));
+  z-index:9998; box-shadow:0 0 12px rgba(96,165,250,0.6);
+}
+
+/* ============ NAV ============ */
+nav{
+  position:fixed; top:0; left:0; width:100%; z-index:900;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:20px 5%;
+  backdrop-filter:blur(0px);
+  transition:background .4s var(--ease), backdrop-filter .4s var(--ease), padding .4s var(--ease), border-color .4s;
+  border-bottom:1px solid transparent;
+}
+nav.scrolled{
+  background:rgba(5,5,5,0.65);
+  backdrop-filter:blur(18px) saturate(160%);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  padding:14px 5%;
+  border-bottom:1px solid var(--line);
+}
+.nav-logo{
+  font-family:var(--font-display); font-weight:700; font-size:1.05rem; letter-spacing:-0.02em;
+  display:flex; align-items:center; gap:8px;
+}
+.nav-logo .dot{ width:7px; height:7px; border-radius:50%; background:var(--blue-2); box-shadow:0 0 10px var(--blue-2); animation:pulse-dot 2.4s ease-in-out infinite; }
+@keyframes pulse-dot{ 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:.4; transform:scale(1.4);} }
+.nav-links{ display:flex; gap:34px; list-style:none; }
+.nav-links a{
+  color:var(--gray); text-decoration:none; font-size:0.86rem; font-weight:500; letter-spacing:0.01em;
+  position:relative; padding:4px 0; transition:color .3s;
+}
+.nav-links a::after{
+  content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--white);
+  transition:width .35s var(--ease);
+}
+.nav-links a:hover{ color:var(--white); }
+.nav-links a:hover::after{ width:100%; }
+.nav-cta{
+  padding:9px 20px; border-radius:100px; border:1px solid var(--line);
+  background:var(--glass); color:var(--white); font-size:0.82rem; font-weight:500;
+  text-decoration:none; transition:all .35s var(--ease);
+}
+.nav-cta:hover{ background:var(--white); color:var(--black); border-color:var(--white); }
+.nav-toggle{ display:none; flex-direction:column; gap:5px; cursor:pointer; z-index:950; }
+.nav-toggle span{ width:22px; height:1.5px; background:#fff; transition:.3s; }
+
+@media (max-width: 860px){
+  .nav-links{ position:fixed; top:0; right:0; height:100vh; width:78%; max-width:340px;
+    background:rgba(8,8,10,0.98); backdrop-filter:blur(20px); flex-direction:column; justify-content:center;
+    align-items:flex-start; padding:0 40px; gap:26px; transform:translateX(100%); transition:transform .5s var(--ease); }
+  .nav-links.open{ transform:translateX(0); }
+  .nav-links a{ font-size:1.1rem; }
+  .nav-cta{ display:none; }
+  .nav-toggle{ display:flex; }
+}
+
+/* ============ SECTION BASICS ============ */
+section{ position:relative; padding:160px 5%; }
+.section-inner{ max-width:1180px; margin:0 auto; position:relative; z-index:2; }
+.eyebrow{
+  font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--blue-2); margin-bottom:18px; display:flex; align-items:center; gap:10px;
+}
+.eyebrow::before{ content:''; width:22px; height:1px; background:var(--blue-2); }
+.section-title{
+  font-family:var(--font-display); font-weight:700; letter-spacing:-0.03em;
+  font-size:clamp(2rem, 4.2vw, 3.4rem); line-height:1.08; margin-bottom:20px;
+}
+.section-sub{ color:var(--gray); font-size:1.05rem; max-width:620px; line-height:1.65; font-weight:300; }
+
+.reveal{ opacity:0; transform:translateY(48px); transition:opacity 1s var(--ease), transform 1s var(--ease); }
+.reveal.in{ opacity:1; transform:translateY(0); }
+.reveal-scale{ opacity:0; transform:scale(0.92); transition:opacity .9s var(--ease), transform .9s var(--ease); }
+.reveal-scale.in{ opacity:1; transform:scale(1); }
+.stagger > *{ transition-delay: calc(var(--i, 0) * 90ms); }
+
+/* ============ BACKGROUND BLOBS ============ */
+.blob-field{ position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+.blob{
+  position:absolute; border-radius:50%; filter:blur(90px); opacity:0.35; mix-blend-mode:screen;
+  will-change:transform;
+}
+.blob-a{ width:560px; height:560px; background:radial-gradient(circle,#1d4ed8,transparent 70%); top:-10%; left:-8%; animation:drift1 26s ease-in-out infinite; }
+.blob-b{ width:460px; height:460px; background:radial-gradient(circle,#2563eb,transparent 70%); top:40%; right:-10%; animation:drift2 32s ease-in-out infinite; }
+.blob-c{ width:520px; height:520px; background:radial-gradient(circle,#1e40af,transparent 70%); bottom:-15%; left:30%; animation:drift3 28s ease-in-out infinite; }
+@keyframes drift1{ 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(60px,80px) scale(1.15);} }
+@keyframes drift2{ 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(-70px,-40px) scale(1.1);} }
+@keyframes drift3{ 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(40px,-60px) scale(1.2);} }
+
+.particles{ position:absolute; inset:0; z-index:1; pointer-events:none; }
+.particle{ position:absolute; width:2px; height:2px; background:rgba(255,255,255,0.5); border-radius:50%; animation:floatp linear infinite; }
+@keyframes floatp{ 0%{ transform:translateY(0); opacity:0; } 10%{opacity:1;} 90%{opacity:1;} 100%{ transform:translateY(-100vh); opacity:0; } }
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; position:relative; padding:120px 5% 60px;
+}
+.hero-badge{
+  font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase;
+  color:var(--gray); border:1px solid var(--line); padding:8px 18px; border-radius:100px; margin-bottom:36px;
+  background:var(--glass); backdrop-filter:blur(10px);
+  opacity:0; animation:fadeUp 1s var(--ease) 0.15s forwards;
+}
+.hero h1{
+  font-family:var(--font-display); font-weight:800; letter-spacing:-0.045em; line-height:0.98;
+  font-size:clamp(3rem, 9.2vw, 8.4rem);
+  background:linear-gradient(180deg,#ffffff 25%, #b9c4d8 100%);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+.hero h1 .line{ overflow:hidden; display:block; }
+.hero h1 .line span{ display:inline-block; opacity:0; transform:translateY(110%); animation:lineUp 1.1s var(--ease) forwards; }
+.hero h1 .line:nth-child(1) span{ animation-delay:0.25s; }
+.hero h1 .line:nth-child(2) span{ animation-delay:0.42s; }
+@keyframes lineUp{ to{ opacity:1; transform:translateY(0); } }
+
+.hero-tagline{
+  margin:32px auto 0; max-width:640px; color:var(--gray); font-size:1.12rem; font-weight:300; line-height:1.7;
+  opacity:0; animation:fadeUp 1s var(--ease) 0.7s forwards;
+}
+.hero-cta-row{ display:flex; gap:16px; margin-top:46px; flex-wrap:wrap; justify-content:center;
+  opacity:0; animation:fadeUp 1s var(--ease) 0.9s forwards; }
+.btn{
+  font-family:var(--font-body); font-weight:600; font-size:0.92rem; padding:15px 30px; border-radius:100px;
+  text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:all .4s var(--ease);
+  border:1px solid transparent; position:relative; overflow:hidden;
+}
+.btn-primary{ background:linear-gradient(135deg,#3b82f6,#2563eb); color:#fff; box-shadow:0 8px 30px rgba(37,99,235,0.35); }
+.btn-primary:hover{ transform:translateY(-3px); box-shadow:0 14px 40px rgba(37,99,235,0.5); }
+.btn-ghost{ background:var(--glass); border-color:var(--line); color:var(--white); backdrop-filter:blur(10px); }
+.btn-ghost:hover{ background:var(--glass-strong); transform:translateY(-3px); border-color:rgba(255,255,255,0.25); }
+.btn-outline{ border-color:var(--line); color:var(--gray); }
+.btn-outline:hover{ color:var(--white); border-color:var(--white); transform:translateY(-3px); }
+
+@keyframes fadeUp{ from{ opacity:0; transform:translateY(24px);} to{ opacity:1; transform:translateY(0);} }
+
+.hero-metrics{
+  display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-top:80px; max-width:900px;
+  opacity:0; animation:fadeUp 1s var(--ease) 1.15s forwards;
+}
+.metric-chip{
+  display:flex; align-items:center; gap:10px; padding:12px 20px; border-radius:100px;
+  background:var(--glass); border:1px solid var(--line); backdrop-filter:blur(12px);
+  font-size:0.82rem; color:var(--gray); animation:floaty 5s ease-in-out infinite;
+}
+.metric-chip b{ color:var(--white); font-weight:600; }
+.metric-chip:nth-child(1){ animation-delay:0s; }
+.metric-chip:nth-child(2){ animation-delay:.6s; }
+.metric-chip:nth-child(3){ animation-delay:1.2s; }
+.metric-chip:nth-child(4){ animation-delay:1.8s; }
+@keyframes floaty{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+
+.scroll-cue{
+  position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:10px; color:var(--gray-dim);
+  opacity:0; animation:fadeUp 1s var(--ease) 1.4s forwards;
+}
+.scroll-cue .mouse{ width:22px; height:36px; border:1px solid var(--line); border-radius:14px; position:relative; }
+.scroll-cue .mouse::before{
+  content:''; position:absolute; top:7px; left:50%; width:3px; height:6px; background:var(--blue-2);
+  border-radius:2px; transform:translateX(-50%); animation:scrolldown 1.8s ease-in-out infinite;
+}
+@keyframes scrolldown{ 0%{ opacity:1; top:7px;} 70%{opacity:0;} 100%{ opacity:0; top:16px;} }
+
+/* ============ ABOUT ============ */
+.about-grid{ display:grid; grid-template-columns:0.75fr 1.25fr; gap:80px; align-items:center; }
+.about-photo{
+  aspect-ratio:4/5; border-radius:28px; position:relative; overflow:hidden;
+  background:linear-gradient(160deg,#101317,#06070a 70%);
+  border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+}
+.about-photo::before{
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(circle at 30% 20%, rgba(59,130,246,0.25), transparent 55%);
+}
+.about-photo .initials{
+  font-family:var(--font-display); font-weight:800; font-size:5.2rem; color:rgba(255,255,255,0.08);
+  letter-spacing:-0.05em; z-index:2;
+}
+.about-photo .ring{ position:absolute; width:70%; aspect-ratio:1/1; border:1px solid rgba(96,165,250,0.25); border-radius:50%; animation:spin 22s linear infinite; }
+@keyframes spin{ to{ transform:rotate(360deg); } }
+.about-text p{ color:#c7c9ce; font-size:1.08rem; line-height:1.85; font-weight:300; margin-bottom:22px; }
+.about-text p b{ color:var(--white); font-weight:600; }
+.about-tags{ display:flex; gap:10px; flex-wrap:wrap; margin-top:28px; }
+.about-tags span{
+  padding:8px 16px; border-radius:100px; border:1px solid var(--line); font-size:0.78rem; color:var(--gray);
+  font-family:var(--font-mono);
+}
+@media (max-width:860px){ .about-grid{ grid-template-columns:1fr; gap:44px; } .about-photo{ max-width:320px; margin:0 auto; } }
+
+/* ============ TIMELINE ============ */
+.timeline{ position:relative; margin-top:70px; padding-left:6px; }
+.timeline-line{
+  position:absolute; left:20px; top:0; bottom:0; width:1px; background:linear-gradient(180deg, var(--blue-2), transparent 95%);
+  transform-origin:top; transform:scaleY(0); transition:transform 1.4s var(--ease-soft);
+}
+.timeline-line.in{ transform:scaleY(1); }
+.tl-item{ position:relative; padding:0 0 56px 62px; }
+.tl-item:last-child{ padding-bottom:0; }
+.tl-dot{
+  position:absolute; left:12px; top:4px; width:17px; height:17px; border-radius:50%;
+  background:var(--black); border:2px solid var(--blue-2); box-shadow:0 0 0 4px rgba(59,130,246,0.12);
+}
+.tl-item.reveal.in .tl-dot{ box-shadow:0 0 0 4px rgba(59,130,246,0.12), 0 0 20px rgba(96,165,250,0.5); }
+.tl-date{ font-family:var(--font-mono); font-size:0.76rem; color:var(--blue-2); letter-spacing:0.05em; margin-bottom:8px; }
+.tl-role{ font-family:var(--font-display); font-weight:700; font-size:1.34rem; margin-bottom:4px; letter-spacing:-0.01em; }
+.tl-org{ color:var(--gray); font-size:0.95rem; margin-bottom:10px; }
+.tl-tags{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;}
+.tl-tags span{ font-size:0.74rem; color:var(--gray); border:1px solid var(--line); padding:5px 12px; border-radius:100px; }
+
+/* ============ EXPERIENCE CARDS ============ */
+.exp-list{ display:flex; flex-direction:column; gap:20px; margin-top:60px; }
+.exp-card{
+  border:1px solid var(--line); border-radius:24px; padding:36px 40px; background:var(--glass);
+  backdrop-filter:blur(14px); cursor:pointer; transition:all .5s var(--ease); position:relative; overflow:hidden;
+}
+.exp-card::before{
+  content:''; position:absolute; inset:0; background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%), rgba(59,130,246,0.08), transparent 40%);
+  opacity:0; transition:opacity .4s;
+}
+.exp-card:hover::before{ opacity:1; }
+.exp-card:hover{ border-color:rgba(255,255,255,0.18); transform:translateY(-4px); background:var(--glass-strong); }
+.exp-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; }
+.exp-top h3{ font-family:var(--font-display); font-size:1.5rem; font-weight:700; letter-spacing:-0.01em; margin-bottom:6px; }
+.exp-top .exp-org{ color:var(--gray); font-size:0.95rem; }
+.exp-date{ font-family:var(--font-mono); font-size:0.76rem; color:var(--blue-2); white-space:nowrap; padding-top:6px;}
+.exp-plus{ width:34px; height:34px; border-radius:50%; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:transform .5s var(--ease), background .3s; }
+.exp-plus::before{ content:''; width:11px; height:1px; background:#fff; position:absolute; }
+.exp-plus::after{ content:''; width:1px; height:11px; background:#fff; position:absolute; transition:transform .4s var(--ease); }
+.exp-card.open .exp-plus{ background:var(--blue-1); transform:rotate(180deg); }
+.exp-card.open .exp-plus::after{ transform:scaleY(0); }
+.exp-body{ max-height:0; overflow:hidden; transition:max-height .6s var(--ease), margin-top .6s var(--ease); margin-top:0; }
+.exp-card.open .exp-body{ max-height:400px; margin-top:26px; }
+.exp-body ul{ list-style:none; display:flex; flex-direction:column; gap:14px; }
+.exp-body li{ padding-left:22px; position:relative; color:#c7c9ce; font-size:0.98rem; line-height:1.6; font-weight:300; }
+.exp-body li::before{ content:''; position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--blue-2); }
+@media (max-width:640px){ .exp-card{ padding:26px; } }
+
+/* ============ IMPACT COUNTERS ============ */
+.impact-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; margin-top:60px; background:var(--line); border-radius:24px; overflow:hidden; border:1px solid var(--line); }
+.impact-cell{ background:var(--panel); padding:52px 30px; text-align:center; transition:background .4s; }
+.impact-cell:hover{ background:var(--panel-2); }
+.impact-num{ font-family:var(--font-display); font-weight:800; font-size:clamp(2.4rem,4.4vw,3.6rem); letter-spacing:-0.03em;
+  background:linear-gradient(135deg,#fff,#8fb4f0); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.impact-label{ color:var(--gray); font-size:0.86rem; margin-top:10px; font-weight:400; }
+@media (max-width:760px){ .impact-grid{ grid-template-columns:repeat(2,1fr);} }
+@media (max-width:480px){ .impact-grid{ grid-template-columns:1fr;} }
+
+/* ============ SKILLS ============ */
+.skills-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:56px; }
+.skill-card{
+  border:1px solid var(--line); border-radius:18px; padding:24px 20px; background:var(--glass);
+  backdrop-filter:blur(10px); transition:all .4s var(--ease); position:relative;
+}
+.skill-card:hover{ transform:translateY(-6px) scale(1.02); border-color:rgba(96,165,250,0.4); background:rgba(59,130,246,0.06); box-shadow:0 20px 40px rgba(0,0,0,0.4); }
+.skill-card span{ font-size:0.93rem; font-weight:500; color:var(--white); }
+.skill-card .idx{ display:block; font-family:var(--font-mono); font-size:0.7rem; color:var(--blue-2); margin-bottom:12px; }
+@media (max-width:900px){ .skills-grid{ grid-template-columns:repeat(3,1fr);} }
+@media (max-width:640px){ .skills-grid{ grid-template-columns:repeat(2,1fr);} }
+
+/* ============ PROJECTS HORIZONTAL SCROLL ============ */
+.projects-scroll-wrap{ margin-top:60px; }
+.projects-track{
+  display:flex; gap:24px; overflow-x:auto; padding:10px 5% 40px; scroll-snap-type:x mandatory;
+  -ms-overflow-style:none; scrollbar-width:none;
+}
+.projects-track::-webkit-scrollbar{ display:none; }
+.project-card{
+  min-width:min(420px,84vw); scroll-snap-align:start; border-radius:26px; border:1px solid var(--line);
+  background:linear-gradient(160deg,#0d0f13,#07080a); padding:38px 34px; display:flex; flex-direction:column;
+  transition:transform .5s var(--ease), border-color .4s;
+}
+.project-card:hover{ transform:translateY(-8px); border-color:rgba(96,165,250,0.35); }
+.project-num{ font-family:var(--font-mono); font-size:0.76rem; color:var(--blue-2); margin-bottom:22px; }
+.project-card h3{ font-family:var(--font-display); font-size:1.5rem; font-weight:700; margin-bottom:14px; letter-spacing:-0.01em; }
+.project-card p{ color:var(--gray); font-size:0.95rem; line-height:1.65; font-weight:300; margin-bottom:8px; }
+.project-block{ margin-top:18px; }
+.project-block .lbl{ font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gray-dim); margin-bottom:6px; }
+.project-block .val{ color:#d3d5da; font-size:0.92rem; font-weight:300; line-height:1.6; }
+.project-impact{
+  margin-top:auto; padding-top:24px; border-top:1px solid var(--line); display:flex; align-items:baseline; gap:10px;
+}
+.project-impact .big{ font-family:var(--font-display); font-weight:800; font-size:2.2rem;
+  background:linear-gradient(135deg,#fff,#8fb4f0); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.project-impact .txt{ color:var(--gray); font-size:0.84rem; }
+.scroll-hint{ text-align:center; color:var(--gray-dim); font-size:0.78rem; font-family:var(--font-mono); margin-top:10px; }
+
+/* ============ LEADERSHIP / TROPHIES / SMALL CARDS ============ */
+.card-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:56px; }
+.role-card{
+  border:1px solid var(--line); border-radius:22px; padding:32px; background:var(--glass); backdrop-filter:blur(10px);
+  transition:all .4s var(--ease);
+}
+.role-card:hover{ transform:translateY(-6px); border-color:rgba(255,255,255,0.2); background:var(--glass-strong); }
+.role-card .role-date{ font-family:var(--font-mono); font-size:0.72rem; color:var(--blue-2); margin-bottom:16px; display:block; }
+.role-card h4{ font-family:var(--font-display); font-weight:700; font-size:1.15rem; margin-bottom:6px; }
+.role-card .role-org{ color:var(--gray); font-size:0.88rem; margin-bottom:12px; }
+.role-card p{ color:#c7c9ce; font-size:0.88rem; font-weight:300; line-height:1.6; }
+@media (max-width:900px){ .card-grid{ grid-template-columns:repeat(2,1fr);} }
+@media (max-width:600px){ .card-grid{ grid-template-columns:1fr;} }
+
+.trophy-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:56px; }
+.trophy-card{
+  border:1px solid var(--line); border-radius:20px; padding:28px 20px; text-align:center; background:var(--glass);
+  transition:all .45s var(--ease); backdrop-filter:blur(10px);
+}
+.trophy-card:hover{ transform:translateY(-8px) rotate(-1deg); border-color:rgba(250,204,21,0.35); background:rgba(250,204,21,0.05); }
+.trophy-icon{ font-size:2rem; margin-bottom:14px; display:block; filter:grayscale(0.2); }
+.trophy-card h4{ font-family:var(--font-display); font-weight:700; font-size:0.98rem; margin-bottom:6px; }
+.trophy-card .t-org{ color:var(--gray); font-size:0.8rem; margin-bottom:4px; }
+.trophy-card .t-year{ font-family:var(--font-mono); font-size:0.72rem; color:var(--blue-2); }
+@media (max-width:760px){ .trophy-grid{ grid-template-columns:repeat(2,1fr);} }
+
+.earlier-list{ margin-top:56px; display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line); }
+.earlier-item{
+  display:flex; justify-content:space-between; align-items:center; padding:22px 6px; border-bottom:1px solid var(--line);
+  gap:20px; transition:padding-left .35s var(--ease), background .35s;
+}
+.earlier-item:hover{ padding-left:16px; background:rgba(255,255,255,0.02); }
+.earlier-item span.txt{ color:#d3d5da; font-size:0.98rem; font-weight:300; }
+.earlier-item span.mark{ color:var(--blue-2); font-family:var(--font-mono); font-size:0.78rem; flex-shrink:0; }
+
+/* ============ CERTS ============ */
+.pill-row{ display:flex; flex-wrap:wrap; gap:14px; margin-top:56px; }
+.pill{
+  padding:14px 26px; border-radius:100px; border:1px solid var(--line); background:var(--glass);
+  font-size:0.9rem; color:var(--white); backdrop-filter:blur(8px); transition:all .35s var(--ease);
+  display:flex; align-items:center; gap:10px;
+}
+.pill:hover{ background:var(--blue-1); border-color:var(--blue-1); transform:translateY(-3px); box-shadow:0 10px 24px rgba(37,99,235,0.35); }
+.pill .dot{ width:6px; height:6px; border-radius:50%; background:var(--blue-2); }
+.pill:hover .dot{ background:#fff; }
+
+/* ============ EDUCATION ============ */
+.edu-grid{ display:flex; flex-direction:column; gap:18px; margin-top:56px; }
+.edu-card{
+  display:grid; grid-template-columns:140px 1fr auto; gap:24px; align-items:center; padding:28px 34px;
+  border:1px solid var(--line); border-radius:20px; background:var(--glass); transition:all .4s var(--ease);
+}
+.edu-card:hover{ border-color:rgba(96,165,250,0.35); background:var(--glass-strong); }
+.edu-year{ font-family:var(--font-mono); color:var(--blue-2); font-size:0.85rem; }
+.edu-card h4{ font-family:var(--font-display); font-size:1.15rem; font-weight:700; margin-bottom:4px; }
+.edu-card .edu-sub{ color:var(--gray); font-size:0.88rem; }
+.edu-score{ text-align:right; }
+.edu-score .n{ font-family:var(--font-display); font-weight:800; font-size:1.5rem; color:var(--white); }
+.edu-score .l{ font-size:0.72rem; color:var(--gray-dim); }
+@media (max-width:700px){ .edu-card{ grid-template-columns:1fr; text-align:left; gap:8px; } .edu-score{ text-align:left; } }
+
+/* ============ VALUES ============ */
+.values-quote{
+  font-family:var(--font-display); font-weight:500; font-size:clamp(1.6rem,3.4vw,2.6rem); line-height:1.4;
+  letter-spacing:-0.02em; max-width:900px; color:#eef0f4;
+}
+.values-quote .hl{ color:var(--blue-2); }
+.values-row{ display:flex; flex-wrap:wrap; gap:16px; margin-top:60px; }
+.value-chip{
+  padding:16px 26px; border:1px solid var(--line); border-radius:100px; font-size:0.92rem; color:var(--gray);
+  transition:all .4s var(--ease); background:var(--glass);
+}
+.value-chip:hover{ color:var(--white); border-color:var(--white); transform:translateY(-3px); }
+
+/* ============ CONTACT ============ */
+.contact-wrap{ text-align:center; }
+.contact-title{
+  font-family:var(--font-display); font-weight:800; letter-spacing:-0.035em; line-height:1;
+  font-size:clamp(2.4rem,7vw,5.6rem); margin-bottom:24px;
+  background:linear-gradient(180deg,#fff,#9db4dd); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+.contact-links{ display:flex; flex-wrap:wrap; gap:16px; justify-content:center; margin-top:44px; }
+.contact-pill{
+  display:flex; align-items:center; gap:12px; padding:16px 28px; border:1px solid var(--line); border-radius:100px;
+  color:var(--white); text-decoration:none; background:var(--glass); backdrop-filter:blur(10px);
+  transition:all .4s var(--ease); font-size:0.92rem;
+}
+.contact-pill:hover{ background:var(--blue-1); border-color:var(--blue-1); transform:translateY(-4px); box-shadow:0 14px 34px rgba(37,99,235,0.35); }
+
+footer{
+  padding:60px 5% 40px; text-align:center; border-top:1px solid var(--line); position:relative; z-index:2;
+}
+.footer-logo{ font-family:var(--font-display); font-weight:700; font-size:1rem; margin-bottom:14px; display:inline-flex; align-items:center; gap:8px; }
+.footer-logo .dot{ width:6px; height:6px; border-radius:50%; background:var(--blue-2); animation:pulse-dot 2.4s ease-in-out infinite; }
+footer p{ color:var(--gray-dim); font-size:0.8rem; }
+
+.divider-num{
+  position:absolute; top:50%; right:5%; transform:translateY(-50%); font-family:var(--font-mono);
+  font-size:11rem; font-weight:700; color:rgba(255,255,255,0.02); z-index:0; pointer-events:none; line-height:1;
+}
+@media (max-width:900px){ .divider-num{ display:none; } }
+
+@media (max-width:900px){ section{ padding:110px 6%; } }
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="glow" id="glow"></div>
+<div class="progress-bar" id="progressBar"></div>
+
+<div class="blob-field">
+  <div class="blob blob-a"></div>
+  <div class="blob blob-b"></div>
+  <div class="blob blob-c"></div>
+  <div class="particles" id="particles"></div>
+</div>
+
+<nav id="nav">
+  <div class="nav-logo"><span class="dot"></span>Nigamanandha</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" class="nav-link">About</a></li>
+    <li><a href="#journey" class="nav-link">Journey</a></li>
+    <li><a href="#experience" class="nav-link">Experience</a></li>
+    <li><a href="#projects" class="nav-link">Projects</a></li>
+    <li><a href="#skills" class="nav-link">Skills</a></li>
+    <li><a href="#contact" class="nav-link">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Contact Me</a>
+  <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-badge">PGPM · Great Lakes Institute of Management</div>
+  <h1>
+    <span class="line"><span>Nigamanandha</span></span>
+    <span class="line"><span>Sarma</span></span>
+  </h1>
+  <p class="hero-tagline">Building products, solving problems and creating business impact through strategy, innovation and data&#8209;driven decision making.</p>
+  <div class="hero-cta-row">
+    <a href="#projects" class="btn btn-primary">View Portfolio</a>
+    <a href="#" class="btn btn-ghost" id="resumeBtn">Download Resume</a>
+    <a href="#contact" class="btn btn-outline">Contact Me</a>
+  </div>
+  <div class="hero-metrics">
+    <div class="metric-chip"><b>4.5+</b>&nbsp;Years Experience</div>
+    <div class="metric-chip"><b>PM</b>&nbsp;Aspirant</div>
+    <div class="metric-chip"><b>PGPM</b>&nbsp;@ Great Lakes Institute of Management</div>
+    <div class="metric-chip"><b>Ex</b>&nbsp;Capgemini</div>
+  </div>
+  <div class="scroll-cue"><div class="mouse"></div><span style="font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.1em;">SCROLL</span></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-photo reveal-scale">
+        <div class="ring"></div>
+        <span class="initials">NS</span>
+      </div>
+      <div class="about-text">
+        <div class="eyebrow reveal">About</div>
+        <h2 class="section-title reveal">From technology consulting to product strategy.</h2>
+        <p class="reveal"><b>Results-driven professional</b> transitioning from technology consulting to Product Management.</p>
+        <p class="reveal">Currently pursuing <b>PGPM at Great Lakes Institute of Management</b>, with a specialization in Product Management and Marketing.</p>
+        <p class="reveal">Experienced in solving complex business problems, stakeholder management, automation, analytics and strategic decision making.</p>
+        <p class="reveal">Strong believer in creating products that solve meaningful customer problems — rather than simply shipping features.</p>
+        <div class="about-tags reveal">
+          <span>Product Strategy</span>
+          <span>Consulting</span>
+          <span>Data-Driven</span>
+          <span>Stakeholder Mgmt</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY TIMELINE -->
+<section id="journey">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Journey</div>
+    <h2 class="section-title reveal">A path built on execution.</h2>
+    <p class="section-sub reveal">Every role added a new layer — engineering discipline, consulting rigor, and now, product thinking.</p>
+    <div class="timeline">
+      <div class="timeline-line" id="tlLine"></div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2026 — Present</div>
+        <div class="tl-role">PGPM</div>
+        <div class="tl-org">Great Lakes Institute of Management</div>
+        <div class="tl-tags"><span>Product Management</span><span>Marketing</span></div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Apr 2025 — May 2026</div>
+        <div class="tl-role">Associate Consultant</div>
+        <div class="tl-org">Capgemini Technology Services India Limited</div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Oct 2021 — Mar 2025</div>
+        <div class="tl-role">Senior Analyst</div>
+        <div class="tl-org">Capgemini Technology Services India Limited</div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2021</div>
+        <div class="tl-role">Mechanical Engineering</div>
+        <div class="tl-org">Anna University</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="divider-num">02</div>
+  <div class="section-inner">
+    <div class="eyebrow reveal">Experience</div>
+    <h2 class="section-title reveal">Impact, not just tenure.</h2>
+    <p class="section-sub reveal">Click a role to expand the achievements behind the numbers.</p>
+
+    <div class="exp-list">
+      <div class="exp-card reveal" data-open="true">
+        <div class="exp-top">
+          <div>
+            <h3>Associate Consultant</h3>
+            <div class="exp-org">Capgemini Technology Services India Limited</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:18px;">
+            <div class="exp-date">Apr 2025 – May 2026</div>
+            <div class="exp-plus"></div>
+          </div>
+        </div>
+        <div class="exp-body">
+          <ul>
+            <li>Reduced hardware costs by 10% by architecting and deploying an automated system remediation framework that reduced hardware issues by 77%.</li>
+            <li>Delivered 10% operational cost savings while eliminating over 15 hours of daily manual effort through intelligent reporting automation.</li>
+            <li>Reduced client costs by 50% while improving Customer Service Management metrics by 44% using trend analysis and proactive root cause identification.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-top">
+          <div>
+            <h3>Senior Analyst</h3>
+            <div class="exp-org">Capgemini Technology Services India Limited</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:18px;">
+            <div class="exp-date">Oct 2021 – Mar 2025</div>
+            <div class="exp-plus"></div>
+          </div>
+        </div>
+        <div class="exp-body">
+          <ul>
+            <li>Mitigated a 20% market-wide sales loss by leading cross-functional incident resolution during business-critical disruptions.</li>
+            <li>Reduced outlet-level operational losses by 10% through rapid resolution of high-priority incidents.</li>
+            <li>Accelerated executive reporting turnaround time by 40% by building an automated SLA dashboard.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT COUNTERS -->
+<section id="impact">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Impact In Numbers</div>
+    <h2 class="section-title reveal">Business outcomes, quantified.</h2>
+    <div class="impact-grid reveal-scale">
+      <div class="impact-cell"><div class="impact-num" data-count="77" data-suffix="%">0%</div><div class="impact-label">Reduction in Hardware Issues</div></div>
+      <div class="impact-cell"><div class="impact-num" data-count="50" data-suffix="%">0%</div><div class="impact-label">Cost Reduction</div></div>
+      <div class="impact-cell"><div class="impact-num" data-count="44" data-suffix="%">0%</div><div class="impact-label">CSM Improvement</div></div>
+      <div class="impact-cell"><div class="impact-num" data-count="15" data-suffix="+">0+</div><div class="impact-label">Hours Saved Every Day</div></div>
+      <div class="impact-cell"><div class="impact-num" data-count="20" data-suffix="%">0%</div><div class="impact-label">Sales Loss Prevented</div></div>
+      <div class="impact-cell"><div class="impact-num" data-count="40" data-suffix="%">0%</div><div class="impact-label">Reporting Faster</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Capabilities</div>
+    <h2 class="section-title reveal">Product management skillset.</h2>
+    <div class="skills-grid stagger" id="skillsGrid">
+      <!-- injected -->
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="padding-left:0; padding-right:0;">
+  <div class="section-inner" style="padding:0 5%;">
+    <div class="eyebrow reveal">Selected Work</div>
+    <h2 class="section-title reveal">Projects built around outcomes.</h2>
+    <p class="section-sub reveal">Scroll horizontally to explore each initiative — problem, solution, and the measurable result.</p>
+  </div>
+  <div class="projects-scroll-wrap">
+    <div class="projects-track" id="projectsTrack">
+      <div class="project-card reveal">
+        <div class="project-num">01 / 03</div>
+        <h3>Intelligent Reporting Automation</h3>
+        <p>Developed intelligent reporting automation to eliminate repetitive manual reporting.</p>
+        <div class="project-block"><div class="lbl">Business Problem</div><div class="val">Teams lost hours daily to manual, repetitive reporting cycles.</div></div>
+        <div class="project-block"><div class="lbl">Solution</div><div class="val">Built an automation layer that generated and distributed reports without manual intervention.</div></div>
+        <div class="project-impact"><span class="big">15+</span><span class="txt">hours saved daily</span></div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-num">02 / 03</div>
+        <h3>Automated System Remediation</h3>
+        <p>Designed an automated remediation framework reducing hardware issues globally.</p>
+        <div class="project-block"><div class="lbl">Business Problem</div><div class="val">Recurring hardware failures drove up cost and support overhead worldwide.</div></div>
+        <div class="project-block"><div class="lbl">Solution</div><div class="val">Architected a self-healing remediation framework deployed across the environment.</div></div>
+        <div class="project-impact"><span class="big">77%</span><span class="txt">fewer hardware issues</span></div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-num">03 / 03</div>
+        <h3>Executive SLA Dashboard</h3>
+        <p>Created automated executive dashboards improving reporting efficiency.</p>
+        <div class="project-block"><div class="lbl">Business Problem</div><div class="val">Executive reporting was slow, manual and inconsistent across teams.</div></div>
+        <div class="project-block"><div class="lbl">Solution</div><div class="val">Built a live SLA dashboard automating data pulls and visual reporting.</div></div>
+        <div class="project-impact"><span class="big">40%</span><span class="txt">faster reporting</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="scroll-hint">— DRAG OR SCROLL —</p>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="leadership">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Leadership</div>
+    <h2 class="section-title reveal">Positions of responsibility.</h2>
+    <div class="card-grid stagger">
+      <div class="role-card reveal" style="--i:0">
+        <span class="role-date">2026–27</span>
+        <h4>Member</h4>
+        <div class="role-org">Brand &amp; Public Relations Committee · Great Lakes</div>
+      </div>
+      <div class="role-card reveal" style="--i:1">
+        <span class="role-date">2026</span>
+        <h4>Liaison</h4>
+        <div class="role-org">Karma Yoga Project · Great Lakes</div>
+        <p>Facilitated communication between the institute and local communities.</p>
+      </div>
+      <div class="role-card reveal" style="--i:2">
+        <span class="role-date">2022–Present</span>
+        <h4>Head of IT Department</h4>
+        <div class="role-org">Senthamizh Cholai</div>
+        <p>Leading digital initiatives and technology operations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Achievements</div>
+    <h2 class="section-title reveal">Recognition along the way.</h2>
+    <div class="trophy-grid stagger">
+      <div class="trophy-card reveal" style="--i:0"><span class="trophy-icon">🏆</span><h4>Ideathon Winner</h4><div class="t-org">Great Lakes</div><div class="t-year">2026</div></div>
+      <div class="trophy-card reveal" style="--i:1"><span class="trophy-icon">🏆</span><h4>Debate Winner</h4><div class="t-org">International Relations · Great Lakes</div><div class="t-year">2026</div></div>
+      <div class="trophy-card reveal" style="--i:2"><span class="trophy-icon">🏆</span><h4>IEVOLVE Certificate</h4><div class="t-org">Capgemini</div><div class="t-year">2023</div></div>
+      <div class="trophy-card reveal" style="--i:3"><span class="trophy-icon">🏆</span><h4>IEVOLVE Certificate</h4><div class="t-org">Capgemini</div><div class="t-year">2024</div></div>
+    </div>
+
+    <div class="eyebrow reveal" style="margin-top:90px;">Earlier Achievements</div>
+    <h2 class="section-title reveal" style="font-size:clamp(1.6rem,3vw,2.2rem);">Where it started.</h2>
+    <div class="earlier-list reveal">
+      <div class="earlier-item"><span class="txt">State Second Rank in Diploma</span><span class="mark">01</span></div>
+      <div class="earlier-item"><span class="txt">First Prize in Oratory — Honoured by Tamil Nadu State Minister</span><span class="mark">02</span></div>
+      <div class="earlier-item"><span class="txt">District-level Speech Competition Winner</span><span class="mark">03</span></div>
+      <div class="earlier-item"><span class="txt">Multiple Technical Paper Presentation Awards</span><span class="mark">04</span></div>
+      <div class="earlier-item"><span class="txt">Published author, Pune Portal</span><span class="mark">05</span></div>
+      <div class="earlier-item"><span class="txt">Content creator, Ojas Originals</span><span class="mark">06</span></div>
+      <div class="earlier-item"><span class="txt">Multilingual poet — Tamil, Telugu &amp; English</span><span class="mark">07</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Certifications</div>
+    <h2 class="section-title reveal">Continuous learning.</h2>
+    <div class="pill-row stagger" id="certsRow"></div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Education</div>
+    <h2 class="section-title reveal">Academic foundation.</h2>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <div class="edu-year">2026–27</div>
+        <div><h4>PGPM</h4><div class="edu-sub">Great Lakes Institute of Management · Specialization: Product Management &amp; Marketing</div></div>
+        <div class="edu-score"><div class="n">—</div><div class="l">In Progress</div></div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2021</div>
+        <div><h4>Bachelor of Engineering</h4><div class="edu-sub">Mechanical Engineering · Anna University</div></div>
+        <div class="edu-score"><div class="n">8.98</div><div class="l">CGPA</div></div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">Diploma</div>
+        <div><h4>Mechanical Engineering</h4><div class="edu-sub">State Second Rank</div></div>
+        <div class="edu-score"><div class="n">100%</div><div class="l">Score</div></div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">SSLC</div>
+        <div><h4>Secondary School</h4><div class="edu-sub">State Board</div></div>
+        <div class="edu-score"><div class="n">98.2%</div><div class="l">Score</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Core Values</div>
+    <p class="values-quote reveal">"I believe great products emerge at the intersection of <span class="hl">customer empathy</span>, <span class="hl">business strategy</span> and <span class="hl">technology</span>."</p>
+    <div class="values-row stagger">
+      <div class="value-chip reveal" style="--i:0">Curiosity</div>
+      <div class="value-chip reveal" style="--i:1">Ownership</div>
+      <div class="value-chip reveal" style="--i:2">Creativity</div>
+      <div class="value-chip reveal" style="--i:3">Collaboration</div>
+      <div class="value-chip reveal" style="--i:4">Continuous Learning</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner contact-wrap">
+    <div class="eyebrow reveal" style="justify-content:center;">Get In Touch</div>
+    <h2 class="contact-title reveal">Let's build something worth shipping.</h2>
+    <p class="section-sub reveal" style="margin:0 auto;">Open to Product Management, Strategy, Consulting and Marketing conversations.</p>
+    <div class="contact-links reveal">
+      <a href="mailto:nigamanandha.sarma@example.com" class="contact-pill">✉ Email</a>
+      <a href="tel:+910000000000" class="contact-pill">☎ Phone</a>
+      <a href="#" class="contact-pill">in LinkedIn</a>
+      <a href="#" class="contact-pill">⌥ GitHub</a>
+      <a href="#" class="contact-pill" id="resumeBtn2">⬇ Download Resume</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo"><span class="dot"></span>Nigamanandha Sarma</div>
+  <p>© 2026 Nigamanandha Sarma. Crafted with precision.</p>
+</footer>
+
+<script>
+(function(){
+  /* ===== CURSOR ===== */
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  const glow = document.getElementById('glow');
+  let mx=0,my=0, rx=0, ry=0, gx=0, gy=0;
+  window.addEventListener('mousemove', e=>{
+    mx=e.clientX; my=e.clientY;
+    dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
+  });
+  function raf(){
+    rx += (mx-rx)*0.18; ry += (my-ry)*0.18;
+    gx += (mx-gx)*0.09; gy += (my-gy)*0.09;
+    ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+    glow.style.transform = `translate(${gx}px,${gy}px) translate(-50%,-50%)`;
+    requestAnimationFrame(raf);
+  }
+  raf();
+  document.querySelectorAll('a,button,.exp-card,.skill-card,.project-card,.role-card,.trophy-card,.pill,.edu-card').forEach(el=>{
+    el.addEventListener('mouseenter', ()=>ring.classList.add('big'));
+    el.addEventListener('mouseleave', ()=>ring.classList.remove('big'));
+  });
+
+  /* ===== NAV ===== */
+  const nav = document.getElementById('nav');
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  window.addEventListener('scroll', ()=>{
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    const p = h>0 ? (window.scrollY/h)*100 : 0;
+    document.getElementById('progressBar').style.width = p+'%';
+  });
+  navToggle.addEventListener('click', ()=>{
+    navLinks.classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-link').forEach(a=>a.addEventListener('click', ()=>navLinks.classList.remove('open')));
+
+  /* ===== PARTICLES ===== */
+  const pField = document.getElementById('particles');
+  for(let i=0;i<40;i++){
+    const p = document.createElement('div');
+    p.className='particle';
+    p.style.left = Math.random()*100+'%';
+    p.style.bottom = '-10px';
+    p.style.top = 'auto';
+    p.style.animationDuration = (12+Math.random()*14)+'s';
+    p.style.animationDelay = (Math.random()*14)+'s';
+    p.style.opacity = 0.2+Math.random()*0.5;
+    pField.appendChild(p);
+  }
+
+  /* ===== SCROLL REVEAL ===== */
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal, .reveal-scale').forEach(el=>io.observe(el));
+
+  const tlLine = document.getElementById('tlLine');
+  const tlObs = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{ if(en.isIntersecting){ tlLine.classList.add('in'); tlObs.unobserve(en.target);} });
+  }, {threshold:0.1});
+  tlObs.observe(document.querySelector('.timeline'));
+
+  /* ===== COUNTERS ===== */
+  const counters = document.querySelectorAll('.impact-num');
+  const cObs = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){
+        const el = en.target;
+        const target = parseInt(el.dataset.count,10);
+        const suffix = el.dataset.suffix || '';
+        let cur = 0;
+        const dur = 1600;
+        const start = performance.now();
+        function tick(now){
+          const t = Math.min(1, (now-start)/dur);
+          const eased = 1 - Math.pow(1-t, 3);
+          cur = Math.round(target*eased);
+          el.textContent = cur + suffix;
+          if(t<1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        cObs.unobserve(el);
+      }
+    });
+  }, {threshold:0.4});
+  counters.forEach(c=>cObs.observe(c));
+
+  /* ===== EXPERIENCE ACCORDION ===== */
+  document.querySelectorAll('.exp-card').forEach(card=>{
+    if(card.dataset.open === 'true') card.classList.add('open');
+    card.addEventListener('click', ()=>{
+      card.classList.toggle('open');
+    });
+    card.addEventListener('mousemove', e=>{
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX-r.left)+'px');
+      card.style.setProperty('--my', (e.clientY-r.top)+'px');
+    });
+  });
+
+  /* ===== SKILLS INJECT ===== */
+  const skills = ["Product Strategy","Product Lifecycle Management","Stakeholder Management","Product Sense","Critical Thinking","Problem Solving","Customer Centricity","Data Analysis","Business Strategy","Market Research","Automation","Decision Making","Prioritization","Agile","Roadmapping","Cross-functional Leadership"];
+  const grid = document.getElementById('skillsGrid');
+  skills.forEach((s,i)=>{
+    const d = document.createElement('div');
+    d.className='skill-card reveal';
+    d.style.setProperty('--i', i%8);
+    d.innerHTML = `<span class="idx">${String(i+1).padStart(2,'0')}</span><span>${s}</span>`;
+    grid.appendChild(d);
+    io.observe(d);
+  });
+
+  /* ===== CERTS INJECT ===== */
+  const certs = ["Azure AZ-900","Agile Software Development","Basics of Generative AI","Prompt Engineering","Artificial Intelligence","Software Engineering","Successful Presentations"];
+  const certsRow = document.getElementById('certsRow');
+  certs.forEach((c,i)=>{
+    const d = document.createElement('div');
+    d.className='pill reveal';
+    d.style.setProperty('--i', i);
+    d.innerHTML = `<span class="dot"></span>${c}`;
+    certsRow.appendChild(d);
+    io.observe(d);
+  });
+
+  /* ===== RESUME BUTTON PLACEHOLDER ===== */
+  [document.getElementById('resumeBtn'), document.getElementById('resumeBtn2')].forEach(b=>{
+    if(!b) return;
+    b.addEventListener('click', (e)=>{
+      e.preventDefault();
+      alert('Resume download link goes here.');
+    });
+  });
+
+  /* ===== PARALLAX BLOBS ===== */
+  window.addEventListener('mousemove', e=>{
+    const cx = (e.clientX/window.innerWidth - 0.5);
+    const cy = (e.clientY/window.innerHeight - 0.5);
+    document.querySelectorAll('.blob').forEach((b,i)=>{
+      const depth = (i+1)*10;
+      b.style.marginLeft = (cx*depth)+'px';
+      b.style.marginTop = (cy*depth)+'px';
+    });
+  });
+})();
+</script>
+</body>
+</html>
